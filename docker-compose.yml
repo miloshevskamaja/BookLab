@@ -1,4 +1,18 @@
 services:
+  backend:
+    build:
+      context: ./books_lab_backend
+    ports:
+      - "8081:8081"
+    depends_on:
+      - db
+      
+  frontend:
+    build:
+      context: ./books_lab_frontend/books_lab_frontend
+    ports:
+      - "3000:80"
+
   db:
     image: postgres:17.4
     restart: always
@@ -8,9 +22,9 @@ services:
       POSTGRES_DB: emt_books
     volumes:
       - pgdata:/var/lib/postgresql/data
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-      - ./views.sql:/docker-entrypoint-initdb.d/views.sql
+      - ./books_lab_backend/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./books_lab_backend/views.sql:/docker-entrypoint-initdb.d/views.sql
     ports:
-      - 8086:5432
+      - 2345:5432
 volumes:
   pgdata:
