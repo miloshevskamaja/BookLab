@@ -28,5 +28,5 @@ jobs:
           files: docker-compose.yml
           push: true
           set: |
-            backend.tags=${{ secrets.DOCKER_USERNAME }}/books-backend:latest
-            frontend.tags=${{ secrets.DOCKER_USERNAME }}/books-frontend:latest
+            backend.tags=${{ secrets.DOCKER_USERNAME }}/booklab:backend
+            frontend.tags=${{ secrets.DOCKER_USERNAME }}/booklab:frontend
