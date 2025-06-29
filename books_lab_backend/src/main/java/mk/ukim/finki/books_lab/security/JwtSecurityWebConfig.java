@@ -35,6 +35,7 @@ public class JwtSecurityWebConfig {
         corsConfiguration.setAllowedOrigins(List.of("http://localhost:3000"));
         corsConfiguration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
         corsConfiguration.setAllowedHeaders(List.of("*"));
+        corsConfiguration.setAllowCredentials(true);
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", corsConfiguration);
         return source;
@@ -48,14 +49,13 @@ public class JwtSecurityWebConfig {
                         corsCustomizer.configurationSource(corsConfigurationSource())
                 )
                 .authorizeHttpRequests(authorizeHttpRequestsCustomizer ->
-                        authorizeHttpRequestsCustomizer
-                                .requestMatchers(
-                                        "/swagger-ui/**",
-                                        "/v3/api-docs/**",
-                                        "/user/register",
-                                        "/user/login"
-                                )
-                                .permitAll()
+                        authorizeHttpRequestsCustomizer.anyRequest().permitAll());
+//                                .requestMatchers(
+//                                        "/swagger-ui/**",
+//                                        "/v3/api-docs/**",
+//                                        "/user/register",
+//                                        "/user/login"
+//                                )
 //                                .requestMatchers(
 //                                        "/countries",
 //                                        "/authors",
@@ -69,15 +69,15 @@ public class JwtSecurityWebConfig {
 //                                        "/books/delete/"
 //                                )
 //                                .hasAnyRole("USER", "LIBRARIAN")
-                                .anyRequest()
-                                .hasAnyRole("USER", "LIBRARIAN")
-
-                )
-                .sessionManagement(sessionManagementConfigurer ->
-                        sessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                )
-                .authenticationProvider(authenticationProvider)
-                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+//                                .anyRequest()
+//                                .hasAnyRole("USER", "LIBRARIAN")
+//
+//                )
+//                .sessionManagement(sessionManagementConfigurer ->
+//                        sessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//                )
+//                .authenticationProvider(authenticationProvider)
+//                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 

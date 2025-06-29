@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: db-config
+  namespace: booklab
+data:
+  POSTGRES_USER: emt
+  POSTGRES_DB: emt_books

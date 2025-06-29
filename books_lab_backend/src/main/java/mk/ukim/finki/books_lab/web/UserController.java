@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/user")
 @Tag(name = "Корисничко API", description = "Ендпоинти за автентикација и регистрација на корисници") // Преведен Tag
 public class UserController {
     private final UserApplicationService userApplicationService;

@@ -19,8 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/books")
-@CrossOrigin(origins = "http://localhost:3000")
+@RequestMapping("/api/books")
 public class BookController {
 
     private final BookApplicationService bookApplicationService;
