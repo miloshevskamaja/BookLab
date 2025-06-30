@@ -6,3 +6,4 @@ metadata:
 data:
   SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/emt_books
   SPRING_DATASOURCE_USERNAME: emt
+  
