@@ -16,10 +16,8 @@ services:
   db:
     image: postgres:17.4
     restart: always
-    environment:
-      POSTGRES_USER: emt
-      POSTGRES_PASSWORD: emt
-      POSTGRES_DB: emt_books
+    env_file:
+      - .env
     volumes:
       - pgdata:/var/lib/postgresql/data
       - ./books_lab_backend/init.sql:/docker-entrypoint-initdb.d/init.sql
